@@ -1,2 +1,3 @@
-# admin_notifications
-🔧🔔 Allows admins to trigger notifications for users via the console or an HTTP endpoint
+# 🔧🔔 Admin notifications
+
+Allows admins to generate notifications for users via the console or an HTTP endpoint
