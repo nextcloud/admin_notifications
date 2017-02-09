@@ -9,6 +9,7 @@
 	<namespace>AdminNotifications</namespace>
 
 	<category>organization</category>
+	<category>monitoring</category>
 	<screenshot>https://github.com/nextcloud/admin_notifications/raw/master/docs/Screenshot.png</screenshot>
 
 	<website>https://github.com/nextcloud/admin_notifications</website>
