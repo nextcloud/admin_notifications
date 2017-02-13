@@ -90,20 +90,20 @@ class Generate extends Command {
 	protected function execute(InputInterface $input, OutputInterface $output) {
 
 		$userId = $input->getArgument('user-id');
-		$user = $this->userManager->get($userId);
+		$subject = $input->getArgument('short-message');
+		$message = $input->getOption('long-message');
 
+		$user = $this->userManager->get($userId);
 		if (!$user instanceof IUser) {
 			$output->writeln('Unknown user');
 			return 1;
 		}
 
-		$subject = $input->getArgument('short-message');
 		if ($subject === '' || strlen($subject) > 255) {
 			$output->writeln('Too long or empty short-message');
 			return 1;
 		}
 
-		$message = $input->getOption('long-message');
 		if ($message !== '' && strlen($message) > 4000) {
 			$output->writeln('Too long long-message');
 			return 1;
