@@ -66,6 +66,8 @@ class APIController extends OCSController {
 	 * @return DataResponse
 	 */
 	public function generateNotification($userId, $shortMessage, $longMessage) {
+		$shortMessage = (string) $shortMessage;
+		$longMessage = (string) $longMessage;
 
 		$user = $this->userManager->get($userId);
 
