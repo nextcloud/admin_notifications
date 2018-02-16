@@ -2,10 +2,12 @@
 <info>
 	<id>admin_notifications</id>
 	<name>Admin notifications</name>
-	<description><![CDATA[Allows admins to generate notifications for users via the console or an HTTP endpoint]]></description>
+	<description><![CDATA[**Obsoleted with Nextcloud 14:** The functionality of the "admin_notifications" app has been merged into the default notifications app for Nextcloud 14. You can savely uninstall and delete the "admin_notifications" app, because it does not do anything anymore.
+
+	Allows admins to generate notifications for users via the console or an HTTP endpoint]]></description>
 	<licence>AGPL</licence>
 	<author>Joas Schilling</author>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<namespace>AdminNotifications</namespace>
 
 	<category>organization</category>
@@ -17,14 +19,10 @@
 	<repository type="git">https://github.com/nextcloud/admin_notifications.git</repository>
 
 	<dependencies>
-		<nextcloud min-version="11" max-version="14" />
+		<nextcloud min-version="14" max-version="14" />
 	</dependencies>
 
 	<types>
 		<logging/>
 	</types>
-
-	<commands>
-		<command>OCA\AdminNotifications\Command\Generate</command>
-	</commands>
 </info>

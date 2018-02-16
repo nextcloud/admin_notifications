@@ -34,19 +34,36 @@ class Application extends App {
 	}
 
 	public function register() {
-		$this->registerNotifier();
-	}
+		$config = $this->getContainer()->getServer()->getConfig();
 
+		if ($config->getAppValue(self::APP_ID, 'published-deprecation-notification', 'no') === 'yes') {
+			return;
+		}
 
-	protected function registerNotifier() {
-		$this->getContainer()->getServer()->getNotificationManager()->registerNotifier(function() {
-			return $this->getContainer()->query(Notifier::class);
-		}, function() {
-			$l = $this->getContainer()->getServer()->getL10NFactory()->get(self::APP_ID);
-			return [
-				'id' => self::APP_ID,
-				'name' => $l->t('Admin notifications'),
-			];
-		});
+		$notificationManager = $this->getContainer()->getServer()->getNotificationManager();
+		$groupManager = $this->getContainer()->getServer()->getGroupManager();
+
+		$notification = $notificationManager->createNotification();
+		$time = time();
+		$datetime = new \DateTime();
+		$datetime->setTimestamp($time);
+
+		try {
+			$notification->setApp(Application::APP_ID)
+				->setDateTime($datetime)
+				->setObject(Application::APP_ID, dechex($time))
+				->setSubject('cli', ['App "admin_notifications" is obsolete'])
+				->setMessage('cli', ['The functionality of the "admin_notifications" app has been merged into the default notifications app for Nextcloud 14. You can safely uninstall and delete the "admin_notifications" app, because it does not do anything anymore.']);
+
+			$admins = $groupManager->get('admin');
+			foreach ($admins->getUsers() as $admin) {
+				$notification->setUser($admin->getUID());
+				$notificationManager->notify($notification);
+			}
+		} catch (\InvalidArgumentException $e) {
+			return;
+		}
+
+		$config->setAppValue(self::APP_ID, 'published-deprecation-notification', 'yes');
 	}
 }
