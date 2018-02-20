@@ -62,12 +62,6 @@ class ApplicationTest extends TestCase {
 	public function dataContainerQuery() {
 		return [
 			[Application::class, App::class],
-
-			[APIController::class, Controller::class],
-			[APIController::class, OCSController::class],
-
-			[Generate::class, Command::class],
-			[Notifier::class, INotifier::class],
 		];
 	}
 
