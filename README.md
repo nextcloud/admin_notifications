@@ -1,4 +1,4 @@
-#⚠️ App "admin_notifications" is obsoleted with Nextcloud 14 ⚠️
+# ⚠️ App "admin_notifications" is obsoleted with Nextcloud 14 ⚠️
 The functionality of the "admin_notifications" app has been merged into the default notifications app for Nextcloud 14. You can savely uninstall and delete the "admin_notifications" app, because it does not do anything anymore.
 
 The new documentation is in the [notifications repository](https://github.com/nextcloud/notifications/blob/master/docs/admin-notifications.md).
